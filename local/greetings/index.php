@@ -31,6 +31,11 @@ $PAGE->set_pagelayout('standard');
 $PAGE->set_title($SITE->fullname);
 $PAGE->set_heading(get_string('pluginname', 'local_greetings'));
 
+require_login();
+if (isguestuser()) {
+    throw new moodle_exception('noguest');
+}
+
 $messageform = new local_greetings_message_form();
 
 if ($data = $messageform->get_data()) {
