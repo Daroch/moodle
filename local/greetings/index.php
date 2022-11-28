@@ -53,7 +53,7 @@ if ($action == 'del') {
         $params = array('id' => $id);
 
         // Users without permission should only delete their own post.
-        if(!$deleteanypost) {
+        if (!$deleteanypost) {
             $params += ['userid' => $USER->id];
         }
 
@@ -79,7 +79,6 @@ if ($data = $messageform->get_data()) {
         $DB->insert_record('local_greetings_messages', $record);
     }
 }
-
 echo $OUTPUT->header();
 
 if (isloggedin()) {
@@ -105,30 +104,30 @@ if ($allowviewpost) {
 
     $messages = $DB->get_records_sql($sql);
 
-        echo $OUTPUT->box_start('card-columns');
+    echo $OUTPUT->box_start('card-columns');
 
-        foreach ($messages as $m) {
-            echo html_writer::start_tag('div', array('class' => 'card'));
-            echo html_writer::start_tag('div', array('class' => 'card-body'));
-            echo html_writer::tag('p', format_text($m->message, FORMAT_PLAIN), array('class' => 'card-text'));
-            echo html_writer::tag('p', get_string('postedby', 'local_greetings', $m->firstname), array('class' => 'card-text'));
-            echo html_writer::start_tag('p', array('class' => 'card-text'));
-            echo html_writer::tag('small', userdate($m->timecreated), array('class' => 'text-muted'));
+    foreach ($messages as $m) {
+        echo html_writer::start_tag('div', array('class' => 'card'));
+        echo html_writer::start_tag('div', array('class' => 'card-body'));
+        echo html_writer::tag('p', format_text($m->message, FORMAT_PLAIN), array('class' => 'card-text'));
+        echo html_writer::tag('p', get_string('postedby', 'local_greetings', $m->firstname), array('class' => 'card-text'));
+        echo html_writer::start_tag('p', array('class' => 'card-text'));
+        echo html_writer::tag('small', userdate($m->timecreated), array('class' => 'text-muted'));
+        echo html_writer::end_tag('p');
+        if ($deleteanypost || ($deletepost && $m->userid == $USER->id)) {
+            echo html_writer::start_tag('p', array('class' => 'card-footer text-center'));
+            echo html_writer::link(
+                new moodle_url(
+                    '/local/greetings/index.php',
+                    array('action' => 'del', 'id' => $m->id, 'sesskey' => sesskey())
+                ),
+                $OUTPUT->pix_icon('t/delete', '') . get_string('delete', 'local_greetings')
+            );
             echo html_writer::end_tag('p');
-            if ($deleteanypost || ($deletepost && $m->userid == $USER->id)) {
-                echo html_writer::start_tag('p', array('class' => 'card-footer text-center'));
-                echo html_writer::link(
-                    new moodle_url(
-                        '/local/greetings/index.php',
-                        array('action' => 'del', 'id' => $m->id, 'sesskey' => sesskey())
-                    ),
-                    $OUTPUT->pix_icon('t/delete', '') . get_string('delete', 'local_greetings')
-                );
-                echo html_writer::end_tag('p');
-            }
-            echo html_writer::end_tag('div');
-            echo html_writer::end_tag('div');
         }
-    echo $OUTPUT->box_end();
+        echo html_writer::end_tag('div');
+        echo html_writer::end_tag('div');
     }
+    echo $OUTPUT->box_end();
+}
 echo $OUTPUT->footer();

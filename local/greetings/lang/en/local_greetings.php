@@ -43,3 +43,6 @@ $string['greetings:postmessages'] = 'Post a new message on the Greetings wall';
 $string['greetings:deleteanymessage'] = 'Delete any message on the Greetings wall';
 $string['greetings:deletemymessage'] = 'Delete my message on the Greetings wall';
 $string['delete'] = 'Delete';
+
+$string['showinnavigation'] = 'Show in navigation';
+$string['showinnavigationdesc'] = 'When enabled will show link in navigation';
