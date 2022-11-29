@@ -41,6 +41,9 @@ $allowpost = has_capability('local/greetings:postmessages', $context);
 $allowviewpost = has_capability('local/greetings:viewmessages', $context);
 $deleteanypost = has_capability('local/greetings:deleteanymessage', $context);
 $deletepost = has_capability('local/greetings:deletemymessage', $context);
+$editanypost = has_capability('local/greetings:editmessage', $context);
+$editpost = has_capability('local/greetings:editownmessage', $context);
+
 
 $action = optional_param('action', '', PARAM_TEXT);
 
@@ -63,7 +66,29 @@ if ($action == 'del') {
         redirect($PAGE->url);
     }
 }
-$messageform = new local_greetings_message_form();
+if ($action == 'edit') {
+    require_sesskey();
+
+    $id = required_param('id', PARAM_TEXT);
+    $message = required_param('message', PARAM_TEXT);
+
+    if ($editanypost || $editpost) {
+        $params = array('id' => $id);
+        $params += ['message' => $message];
+
+
+        // Users without permission should only delete their own post.
+        if (!$editanypost) {
+            $params += ['userid' => $USER->id];
+        }
+
+        // TODO: Confirm before deleting.
+        $DB->update_record('local_greetings_messages', $params);
+
+        redirect($PAGE->url);
+    }
+}
+$messageform = new local_greetings_message_form(null, array('id'=>$id, 'message'=>$message ));
 
 
 if ($data = $messageform->get_data()) {
@@ -121,8 +146,17 @@ if ($allowviewpost) {
                     '/local/greetings/index.php',
                     array('action' => 'del', 'id' => $m->id, 'sesskey' => sesskey())
                 ),
-                $OUTPUT->pix_icon('t/delete', '') . get_string('delete', 'local_greetings')
+                $OUTPUT->pix_icon('t/delete', get_string('delete', 'local_greetings') . ' post id: '. $m->id)
             );
+            if ($editanypost || ($editpost && $m->userid == $USER->id)) {
+                echo html_writer::link(
+                    new moodle_url(
+                        '/local/greetings/index.php',
+                        array('action' => 'edit', 'id' => $m->id, 'message' => $m->message, 'sesskey' => sesskey())
+                    ),
+                    $OUTPUT->pix_icon('t/edit', get_string('edit', 'local_greetings') . ' post id: '. $m->id)
+                );
+            }
             echo html_writer::end_tag('p');
         }
         echo html_writer::end_tag('div');

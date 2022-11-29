@@ -33,6 +33,7 @@ class local_greetings_message_form extends moodleform {
 
         $mform->addElement('textarea', 'message', get_string('yourmessage', 'local_greetings'));
         $mform->setType('message', PARAM_TEXT);
+        $mform->setDefault('message',$message);
 
         $submitlabel = get_string('submit');
         $mform->addElement('submit', 'submitmessage', $submitlabel);
