@@ -37,3 +37,16 @@ $string['greetingusernz'] = 'Kia Ora, {$a}.';
 
 $string['yourmessage'] = 'Your message';
 $string['postedby'] = 'Posted by {$a}.';
+
+$string['greetings:viewmessages'] = 'View messages on the Greetings wall';
+$string['greetings:postmessages'] = 'Post a new message on the Greetings wall';
+$string['greetings:deleteanymessage'] = 'Delete any message on the Greetings wall';
+$string['greetings:deletemymessage'] = 'Delete my message on the Greetings wall';
+$string['delete'] = 'Delete';
+$string['edit'] = 'Edit';
+
+$string['showinnavigation'] = 'Show in navigation';
+$string['showinnavigationdesc'] = 'When enabled will show link in navigation';
+
+$string['greetings:editmessage'] = 'Edit any message on the Greetings wall';
+$string['greetings:editownmessage'] = 'Edit my message on the Greetings wall';

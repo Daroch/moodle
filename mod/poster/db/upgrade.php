@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - https://moodle.org/
+// This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -12,20 +12,29 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Plugin version and other meta-data are defined here.
+ * Upgrade steps for the Poster activity module.
  *
- * @package     local_greetings
- * @copyright   2022 Alvaro Larrinaga <alarrinaga@proxya.com>
- * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     mod_poster
+ * @category    upgrade
+ * @copyright   2015 David Mudrak <david@moodle.com>
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'local_greetings';
-$plugin->release = '0.1.0';
-$plugin->version = 2022112901;
-$plugin->requires = 2020061500;
-$plugin->maturity = MATURITY_ALPHA;
+/**
+ * Performs the poster upgrade steps.
+ *
+ * @param int $oldversion The version we are upgrading from
+ * @return bool
+ */
+function xmldb_poster_upgrade($oldversion) {
+    global $CFG, $DB;
+
+    $dbman = $DB->get_manager();
+
+    return true;
+}

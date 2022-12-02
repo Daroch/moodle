@@ -15,17 +15,37 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Plugin version and other meta-data are defined here.
+ * Form extension for greeting messages edit form.
  *
  * @package     local_greetings
- * @copyright   2022 Alvaro Larrinaga <alarrinaga@proxya.com>
+ * @copyright   2022 Michael Pound <michael@brickfieldlabs.ie>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'local_greetings';
-$plugin->release = '0.1.0';
-$plugin->version = 2022112901;
-$plugin->requires = 2020061500;
-$plugin->maturity = MATURITY_ALPHA;
+require_once("$CFG->libdir/formslib.php");
+
+/**
+ * Class greeting edit form.
+ *
+ * @package    local_greetings
+ * @copyright  2022 Michael Pound <michael@brickfieldlabs.ie>
+ * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class local_greetings_edit_form extends moodleform {
+
+    /**
+     * Define the form.
+     */
+    public function definition() {
+
+        $mform = $this->_form;
+
+        $mform->addElement('textarea', 'newmessage', 'update message');
+        $mform->setType('newmessage', PARAM_TEXT);
+        $mform->setDefault('newmessage',  $this->_customdata['message']);
+
+        $this->add_action_buttons(true);
+    }
+}
