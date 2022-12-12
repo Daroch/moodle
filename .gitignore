@@ -56,3 +56,6 @@ moodle-plugin-ci.phar
 .hugo_build.lock
 .phpcs.xml
 jsconfig.json
+/theme/demo
+/course/format/demo
+/mode/demo
