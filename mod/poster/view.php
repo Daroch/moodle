@@ -40,7 +40,7 @@ $PAGE->set_title($course->shortname.': '.$poster->name);
 $PAGE->set_heading($course->fullname);
 $PAGE->set_activity_record($poster);
 
-if ($edit !== null and confirm_sesskey() and $PAGE->user_allowed_editing()) {
+if ($edit !== null and confirm_sesskey() && $PAGE->user_allowed_editing()) {
     $USER->editing = $edit;
     redirect($PAGE->url);
 }

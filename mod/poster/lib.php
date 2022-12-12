@@ -32,6 +32,9 @@ defined('MOODLE_INTERNAL') || die();
  * @return bool true if the feature is supported, null if unknown
  */
 function poster_supports($feature) {
+    if (defined('FEATURE_MOD_PURPOSE') && $feature === FEATURE_MOD_PURPOSE) {
+        return MOD_PURPOSE_OTHER;
+    }
 
     switch($feature) {
         case FEATURE_MOD_ARCHETYPE:
