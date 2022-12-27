@@ -169,4 +169,49 @@ class local_custom_service_external extends external_api {
             );
     }
 
+    public static function verificacion_manual_user_parameters() {
+        return new external_function_parameters(
+            array(
+                'userid' => new external_value(PARAM_TEXT, 'User Id')
+            )
+        );
+    }
+    public static function verificacion_manual_user($userid) {
+        // echo $categoryids;
+        global $DB,$CFG;
+        require_once($CFG->libdir . '/filelib.php');
+        require_once($CFG->dirroot . '/user/lib.php');
+        require_once($CFG->dirroot . '/user/externallib.php');  
+        
+        $sql = "UPDATE mdl_user_info_data uida
+        JOIN mdl_user_info_field uif ON (uif.id = uida.fieldid)
+        JOIN mdl_user u ON (u.id = uida.userid )
+        SET uida.data = '1'
+        WHERE uida.userid = $userid && uida.fieldid = '1'
+        ";
+            //echo $categoryids;
+            //print_r($param);
+            $result = $DB->execute($sql);
+            if($result) {
+                $response = [
+                    'message'=>'Success'                        
+                    ];
+
+            }else{
+                $response = [
+                    'message'=>'Failed'                        
+                    ];
+
+            }        
+            
+        return $response;
+    }
+    public static function verificacion_manual_user_returns() {
+        return new external_single_structure(
+                array(                   
+                    'message'=> new external_value(PARAM_TEXT, 'success message')                   
+                )
+            );
+    }
+
 }
