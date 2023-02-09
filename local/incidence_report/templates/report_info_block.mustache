@@ -1,0 +1,98 @@
+<div class=summary-content>
+    <div class="tab-button-block">
+        <button class="tab-button btn active" id="show-review-tab">Resumen</button>
+        <button class="tab-button btn" id="show-filter-tab">Filtros</button>
+    </div>
+    <div class="tab-content tab-hidden" id="review-tab">
+        <div class="row px-3">
+            <div class="col-12 col-md-6 col-lg-4 pb-3">
+                <table class="resumen w-100 bg-grey">
+                    <tr>
+                        <th colspan="2"><b>Resumen</b></th>
+                    </tr>
+                    <tr>
+                        <td><b class="ml-2">Total incidencias del periodo</b></td>
+                        <td><span>{{total_incidencias_periodo}}</span></td>
+                    </tr>
+                    <tr>
+                        <td><b class="ml-2">Total incidencias resueltas</b></td>
+                        <td><span>{{total_incidencias_resueltas}}</span></td>
+                    </tr>
+                    <tr>
+                        <td><b class="ml-2">Tiempo medio resolucion</b></td>
+                        <td><span>{{tiempo_medio_de_resolucion}}</span></td>
+                    </tr>
+                    <tr>
+                        <td><b class="ml-2">Total de incidencias atendidas</b></td>
+                        <td><span>{{total_incidencias_atendidas}}</span></td>
+                    </tr>
+                    <tr>
+                        <td><b class="ml-2">Tiempo medio respuesta</b> </td>
+                        <td><span>{{tiempo_medio_sla}}</span></td>
+                    </tr>
+                    <tr>
+                        <td><b class="ml-2">Puntuación media obtenida</b></span></td>
+                        <td><span>{{puntuacion_media}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 pb-3">
+                <table class="resumen w-100 bg-grey">
+                    <tr>
+                        <th colspan="2"><b>Tipos</b></th>
+                    </tr>
+                    {{#tipos}}
+                    <tr>
+                        <td><b class="ml-2">{{tipo}}</b></td>
+                        <td><span>{{total}}</span></td>
+                    </tr>
+                    {{/tipos}}
+                </table>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 pb-3">
+                <table class="resumen w-100 bg-grey">
+                    <tr>
+                        <th colspan="2"><b>Estados</b></th>
+                    </tr>
+                    {{#estados}}
+                    <tr>
+                        <td><b class="ml-2">{{estado}}</b></td>
+                        <td><span>{{total}}</span></td>
+                    </tr>
+                    {{/estados}}
+                </table>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 pb-3">
+                <table class="resumen w-100 bg-grey">
+                    <tr>
+                        <th colspan="2"><b>Subtipos</b></th>
+                    </tr>
+                    {{#subtipos}}
+                    <tr>
+                        <td><b class="ml-2">{{subtipo}}</b></td>
+                        <td><span>{{total}}</span></td>
+                    </tr>
+                    {{/subtipos}}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="tab-content tab-hidden" style="display: none" id="filter-tab">
+        <!-- <this->filter_for($data); -->
+        <div class="row px-3">
+            <div class="col-12 col-md-6 col-lg-4 pb-3">
+                <table class="filtro left w-100 bg-grey">
+                    <tr>
+                        <th colspan="2"><b>Filtros</b></th>
+                    </tr>
+                    {{#filter}}
+                    <tr>
+                        <td><b class="ml-2">{{key}}</b></td>
+                        <td><span>{{value}}</span></td>
+                    </tr>
+                    {{/filter}}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

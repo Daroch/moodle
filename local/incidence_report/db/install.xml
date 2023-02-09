@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/incidence_report/db" VERSION="20191025" COMMENT="XMLDB file for Moodle local/incidence_report"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+    <TABLES>
+        <TABLE NAME="local_incidence_report_msgs" COMMENT="Stores messages of incidence reports">
+            <FIELDS>
+                <FIELD NAME="id"        TYPE="int"  LENGTH="10"  NOTNULL="true"  SEQUENCE="true"/>
+                <FIELD NAME="answers"   TYPE="int"  LENGTH="10"  NOTNULL="false" SEQUENCE="false" COMMENT="id of the message this answers to"/>
+                <FIELD NAME="token"     TYPE="char" LENGTH="9"   NOTNULL="false" SEQUENCE="false" COMMENT="Secret code for unlogged users"/>
+                <FIELD NAME="userid"    TYPE="int"  LENGTH="10"  NOTNULL="true"  SEQUENCE="false" COMMENT="Reporting User id"/>
+                <FIELD NAME="fullname"  TYPE="char" LENGTH="254" NOTNULL="false" SEQUENCE="false" COMMENT="Reporting unlogged user fullname"/>
+                <FIELD NAME="email"     TYPE="char" LENGTH="254" NOTNULL="false" SEQUENCE="false" COMMENT="Reporting unlogged user contact email"/>
+                <FIELD NAME="type"      TYPE="int"  LENGTH="10"  NOTNULL="false" SEQUENCE="false" COMMENT="Incidence type"/>
+                <FIELD NAME="courseid"  TYPE="int"  LENGTH="10"  NOTNULL="false" SEQUENCE="false" COMMENT="Related course id"/>
+                <FIELD NAME="message"   TYPE="text"              NOTNULL="true"  SEQUENCE="false" COMMENT="Comments provided"/>
+                <FIELD NAME="manager"   TYPE="int"  LENGTH="10"  NOTNULL="false" SEQUENCE="false" COMMENT="Manager id"/>
+                <FIELD NAME="status"    TYPE="int"  LENGTH="10"  NOTNULL="false" SEQUENCE="false" COMMENT="Incidence status"/>
+                <FIELD NAME="timestamp" TYPE="int"  LENGTH="10"  NOTNULL="true"  SEQUENCE="false" COMMENT="timestamp"/>
+                <FIELD NAME="points"    TYPE="int"  LENGTH="10"  NOTNULL="false" SEQUENCE="false" COMMENT="User satisfaction"/>
+                <FIELD NAME="modified"  TYPE="int"  LENGTH="10"  NOTNULL="false" SEQUENCE="false" COMMENT="modified timestamp"/>                
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            </KEYS>
+        </TABLE>
+    </TABLES>
+</XMLDB>
