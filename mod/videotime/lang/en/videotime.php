@@ -119,6 +119,8 @@ $string['lastsession'] = 'Last session';
 $string['long'] = 'Long';
 $string['managevideotimetabplugins'] = 'Manage Video Time tab plugins';
 $string['managevideotimepluginplugins'] = 'Manage Video Time extensions';
+$string['mobileiframe'] = 'Mobile iframe player';
+$string['mobileiframe_help'] = 'Use experimental iframe player in mobile app. It is required to display newer features including tabs and videos other than from Vimeo in app.';
 $string['mode'] = 'Mode';
 $string['mode_help'] = '<b>Normal mode</b>: Displays the standard activity link, no extras on course page.<br>
 <b>Label mode</b>: Embed video on course layout, similar to the Label activity.<br>
@@ -268,7 +270,7 @@ $string['tablealias_vt'] = 'Video Time';
 $string['tabinformation'] = 'Information';
 $string['tabtranscript'] = 'Transcript';
 $string['tabs'] = 'Tabs';
-$string['tabsettings'] = 'Tab settings';
+$string['generalsettings'] = 'General settings';
 $string['taskscheduled'] = 'Task scheduled for next cron run';
 $string['timestarted'] = 'Date started';
 $string['todo'] = 'TODO';
